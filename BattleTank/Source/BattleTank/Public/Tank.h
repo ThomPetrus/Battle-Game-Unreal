@@ -4,10 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "TankAimingComponent.h"
 #include "Tank.generated.h"
 
 class UTankBarrel;
+class UTankTurret;
+class UTankAimingComponent;
+
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -20,10 +22,12 @@ public:
 	UFUNCTION(BluePrintCallable, Category = Setup)
 		void SetBarrelReference(UTankBarrel* BarrelToSet);
 
+	UFUNCTION(BluePrintCallable, Category = Setup)
+		void SetTurretReference(UTankTurret* TurretToSet);
+
 	// TODO - find sensible default
 	UPROPERTY(EditAnywhere, Category = Firing)
 		float LaunchSpeed = 100000;
-
 
 	UTankAimingComponent* TankAimingComponent = nullptr;
 

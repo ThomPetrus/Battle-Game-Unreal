@@ -3,6 +3,7 @@
 
 #include "TankPlayerController.h"
 #include "Engine/World.h"
+#include "Tank.h"
 
 
 void ATankPlayerController::BeginPlay() 
@@ -55,10 +56,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 	if (GetCameraDirection(ScreenLocation, CameraDirection)) {
 		
 		// line trace, and see what we hit, w/ max range
-		if (GetLookVectorHitLocation(CameraDirection, OutHitLocation)) 
-		{
-
-		}
+		GetLookVectorHitLocation(CameraDirection, OutHitLocation);
 
 	}
 
@@ -84,5 +82,6 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector CameraDirection, FV
 		OutHitLocation = HitResult.Location;
 		return true;
 	}
+	//OutHitLocation = FVector(0);
 	return false;
 }

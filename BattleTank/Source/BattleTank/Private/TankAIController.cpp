@@ -4,6 +4,7 @@
 #include "TankAIController.h"
 #include "GameFrameWork/PlayerController.h"
 #include "Engine/World.h"
+#include "Tank.h"
 
 
 void ATankAIController::BeginPlay()
