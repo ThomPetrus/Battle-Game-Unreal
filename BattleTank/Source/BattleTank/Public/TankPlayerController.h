@@ -26,14 +26,14 @@ public:
 
 private:
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 		float ReticleXLocation = 0.5;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 		float ReticleYLocation = 0.33333;
 
 	// 10km - 10*100cm*1000
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 		float LineTraceRange = 1000000;
 
 	// For finding the instance of the tank being controlled.
