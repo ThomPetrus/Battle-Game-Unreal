@@ -20,5 +20,8 @@ class BATTLETANK_API ATankAIController : public AAIController
 private:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+
+	// Distance from player before firing
+	float AcceptanceRadius = 3000;
 };
 

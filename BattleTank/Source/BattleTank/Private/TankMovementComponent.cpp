@@ -10,6 +10,17 @@ void UTankMovementComponent::Initialize(UTankTrack* LeftTrackToSet, UTankTrack* 
 	RightTrack = RightTrackToSet;
 }
 
+// No need for super as were changing functionality - Dynamic binding
+void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
+{
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
+	IntentMoveForward(FVector::DotProduct(TankForward, AIForwardIntention));
+
+	auto RightThrow = FVector::CrossProduct(TankForward, AIForwardIntention).Z;
+	IntentTurnRight(RightThrow);
+}
+
 void UTankMovementComponent::IntentMoveForward(float Throw) 
 {
 	if (!LeftTrack || !RightTrack)
@@ -29,3 +40,4 @@ void UTankMovementComponent::IntentTurnRight(float Throw)
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(-Throw);
 }
+

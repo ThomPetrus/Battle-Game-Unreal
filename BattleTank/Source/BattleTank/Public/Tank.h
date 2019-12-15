@@ -26,26 +26,26 @@ public:
 	
 	void AimAt(FVector HitLocation);
 
-	UFUNCTION(BluePrintCallable, Category = Setup)
+	UFUNCTION(BluePrintCallable, Category = "Setup")
 		void SetBarrelReference(UTankBarrel* BarrelToSet);
 
-	UFUNCTION(BluePrintCallable, Category = Setup)
+	UFUNCTION(BluePrintCallable, Category = "Setup")
 		void SetTurretReference(UTankTurret* TurretToSet);
 
-	UFUNCTION(BluePrintCallable, Category = Setup)
+	UFUNCTION(BluePrintCallable, Category = "Setup")
 		void SetTrackReference(UTankTrack* TankTrackToSet);
 
 	// TODO - find sensible default
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditAnywhere, Category = "Firing")
 		float LaunchSpeed = 100000;
 
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 		float ReloadTimeInSeconds = 3;
 
-	UFUNCTION(BluePrintCallable, Category = Firing)
+	UFUNCTION(BluePrintCallable, Category = "Firing")
 		void Fire();
 
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 protected:
