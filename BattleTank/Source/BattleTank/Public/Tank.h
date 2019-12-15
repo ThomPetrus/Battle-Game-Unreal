@@ -11,6 +11,7 @@
 class UTankBarrel;
 class UTankTurret;
 class UTankAimingComponent;
+class UTankMovementComponent;
 class UTankTrack;
 class AProjectile;
 
@@ -23,6 +24,7 @@ class BATTLETANK_API ATank : public APawn
 
 public:
 	
+	void AimAt(FVector HitLocation);
 
 	UFUNCTION(BluePrintCallable, Category = Setup)
 		void SetBarrelReference(UTankBarrel* BarrelToSet);
@@ -46,10 +48,13 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
+protected:
+
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
+
 	UTankAimingComponent* TankAimingComponent = nullptr;
 	UTankBarrel* Barrel = nullptr;
-
-	void AimAt(FVector HitLocation);
 
 private:
 	// Sets default values for this pawn's properties
