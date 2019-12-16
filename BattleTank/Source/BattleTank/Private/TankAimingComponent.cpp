@@ -20,17 +20,9 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::BeginPlay() 
 {
+	Super::BeginPlay();
 	// First fire after initial reload
 	LastFireTime = FPlatformTime::Seconds();
-}
-
-void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	if ((FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds) 
-	{
-		FiringState = EFiringStates::Reloading;
-	}
-	
 }
 
 void UTankAimingComponent::Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet)
@@ -38,6 +30,25 @@ void UTankAimingComponent::Initialize(UTankBarrel* BarrelToSet, UTankTurret* Tur
 	Barrel = BarrelToSet;
 	Turret = TurretToSet;
 }
+
+void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds) 
+	{
+		FiringState = EFiringStates::Reloading;
+	}
+	else if (IsBarrelMoving()) 
+	{
+		FiringState = EFiringStates::Aiming;
+	}
+	else
+	{
+		FiringState = EFiringStates::Locked;
+	}
+}
+
 void UTankAimingComponent::AimAt(FVector HitLocation)
 {
 	if (!ensure(Barrel && Turret))
@@ -52,7 +63,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 
 	if(bHaveAimSolution)
 	{
-		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
+		AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrel(AimDirection);
 		auto Time = GetWorld()->GetTimeSeconds();
 	}
@@ -71,6 +82,15 @@ void UTankAimingComponent::MoveBarrel(FVector AimDirection)
 
 	Barrel->Elevate(DeltaRotator.Pitch); 
 	Turret->Rotate(DeltaRotator.Yaw);
+}
+
+bool UTankAimingComponent::IsBarrelMoving() 
+{
+	if (!ensure(Barrel)) 
+	{
+		return false;
+	}
+	return !AimDirection.Equals(Barrel->GetForwardVector(), 0.01);
 }
 
 void UTankAimingComponent::Fire()
