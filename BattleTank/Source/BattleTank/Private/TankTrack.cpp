@@ -12,8 +12,7 @@ void UTankTrack::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	UE_LOG(LogTemp, Warning, TEXT("Ticking"));
-
+	
 	// Calculate slippage speed
 	auto SlippageSpeed = FVector::DotProduct(GetRightVector(), GetComponentVelocity());
 	auto CorrectionAcceleration = -SlippageSpeed / DeltaTime * GetRightVector();
@@ -23,6 +22,7 @@ void UTankTrack::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 	auto CorrectionForce = (TankRoot->GetMass() * CorrectionAcceleration) / 2;
 
 	TankRoot->AddForce(CorrectionForce);
+	
 }
 
 void UTankTrack::SetThrottle(float Throttle) 
