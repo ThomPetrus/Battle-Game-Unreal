@@ -39,16 +39,16 @@ public:
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "States")
-		EFiringStates FiringState = EFiringStates::Reloading;
+		EFiringStates FiringState = EFiringStates::Locked;
 
 private:
 
-	virtual void BeginPlay() override;
-
-	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 	// Sets default values for this component's properties
 	UTankAimingComponent();
+
+	virtual void BeginPlay() override;
+
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void MoveBarrel(FVector AimDirection);
 	bool IsBarrelMoving();
