@@ -13,6 +13,7 @@
  */
 
 class ATank;
+class UTankAimingComponent;
 
 UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController
@@ -24,8 +25,15 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
-private:
+protected:
+	// For finding the instance of the tank being controlled.
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+		ATank* GetControlledTank() const;
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+		void FoundAimingComponent(UTankAimingComponent* AimingComponentReference);
+
+private:
 	UPROPERTY(EditDefaultsOnly)
 		float ReticleXLocation = 0.5;
 
@@ -36,9 +44,6 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		float LineTraceRange = 1000000;
 
-	// For finding the instance of the tank being controlled.
-	ATank* GetControlledTank() const;
-	
 	// Moves barrel to where crosshair intersects world - will need raycasting
 	void AimTowardsCrosshair();
 
