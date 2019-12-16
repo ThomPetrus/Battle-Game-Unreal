@@ -20,11 +20,11 @@ void ATankAIController::Tick(float DeltaTime)
 	auto ControlledTank = Cast<ATank>(GetPawn());
 	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 
-	if (!ControlledTank)
+	if (!ensure(ControlledTank))
 	{
 		UE_LOG(LogTemp, Error, TEXT("AIController not possessing a Tank"));
 	}
-	if (!PlayerTank)
+	if (!ensure(PlayerTank))
 	{
 		UE_LOG(LogTemp, Error, TEXT("PlayerController not possessing a Tank"));
 	}
