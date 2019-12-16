@@ -33,7 +33,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 		void Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 
-	void AimAt(FVector HitLocation, float LaunchSpeed);
+	// TODO - find sensible default
+	UPROPERTY(EditAnywhere, Category = "Firing")
+		float LaunchSpeed = 100000;
+
+	void AimAt(FVector HitLocation);
 
 
 protected:

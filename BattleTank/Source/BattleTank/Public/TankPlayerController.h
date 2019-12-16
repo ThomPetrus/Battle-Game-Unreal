@@ -12,7 +12,6 @@
  * 
  */
 
-class ATank;
 class UTankAimingComponent;
 
 UCLASS()
@@ -26,10 +25,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 protected:
-	// For finding the instance of the tank being controlled.
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-		ATank* GetControlledTank() const;
-
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 		void FoundAimingComponent(UTankAimingComponent* AimingComponentReference);
 

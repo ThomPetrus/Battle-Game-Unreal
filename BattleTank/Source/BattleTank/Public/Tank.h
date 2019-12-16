@@ -10,11 +10,8 @@
 
 class UTankBarrel;
 class UTankTurret;
-class UTankAimingComponent;
 class UTankTrack;
 class AProjectile;
-
-
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -22,8 +19,6 @@ class BATTLETANK_API ATank : public APawn
 	GENERATED_BODY()
 
 public:
-	
-	void AimAt(FVector HitLocation);
 
 	// TODO - find sensible default
 	UPROPERTY(EditAnywhere, Category = "Firing")
@@ -38,10 +33,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
-protected:
-
 	UPROPERTY(BlueprintReadOnly)
-	UTankAimingComponent* TankAimingComponent = nullptr;
 	UTankBarrel* Barrel = nullptr;
 
 private:

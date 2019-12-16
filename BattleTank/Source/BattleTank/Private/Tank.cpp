@@ -2,9 +2,9 @@
 
 
 #include "Tank.h"
-#include "TankAimingComponent.h"
 #include "TankBarrel.h"
 #include "Engine/World.h"
+
 // Sets default values
 ATank::ATank()
 {
@@ -18,19 +18,6 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 	auto TankName = GetName();
-
-	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
-}
-
-
-void ATank::AimAt(FVector HitLocation) 
-{
-	if (!ensure(TankAimingComponent)) 
-	{
-		return;
-	}
-
-	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
 void ATank::Fire()
@@ -39,6 +26,7 @@ void ATank::Fire()
 	{
 		return;
 	}
+
 	bool IsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
 
 	if (IsReloaded)
