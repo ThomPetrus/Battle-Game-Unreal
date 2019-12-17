@@ -23,6 +23,6 @@ private:
 protected:
 	// Distance from player before firing
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
-	float AcceptanceRadius = 5000;
+	float AcceptanceRadius = 8000;
 };
 

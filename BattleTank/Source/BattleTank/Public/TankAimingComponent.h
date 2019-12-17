@@ -56,7 +56,7 @@ public:
 	double LastFireTime = 0;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
-		float ReloadTimeInSeconds = 2;
+		float ReloadTimeInSeconds = 3;
 
 	FVector AimDirection;
 

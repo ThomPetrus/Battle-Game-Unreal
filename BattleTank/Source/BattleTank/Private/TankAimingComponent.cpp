@@ -42,7 +42,6 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	}
 	else if ((GetWorld()->GetTimeSeconds() - LastFireTime) < ReloadTimeInSeconds) 
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%f, %f"), GetWorld()->GetTimeSeconds(), LastFireTime);
 		FiringState = EFiringStates::Reloading;
 	}
 	else if (IsBarrelMoving()) 
