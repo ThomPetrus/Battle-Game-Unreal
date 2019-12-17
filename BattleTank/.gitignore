@@ -75,7 +75,7 @@ DerivedDataCache/*
 
 # some assets too large to be storing with source control
 
-Content/Imported_Free/ProceduralNaturePack/*
-Content/Imported_Free/StarterContent/*
-Content/Imported_Free/Particles_Wind_Control_System/*
-Content/Imported_Free/GoodSky
+Content/Imported_Free_TODO_DeleteUnused/ProceduralNaturePack/*
+Content/Imported_Free_TODO_DeleteUnused/StarterContent/*
+Content/Imported_Free_TODO_DeleteUnused/Particles_Wind_Control_System/*
+Content/Imported_Free_TODO_DeleteUnused/GoodSky

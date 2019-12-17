@@ -47,7 +47,7 @@ public:
 
 
 	UFUNCTION(BluePrintCallable, Category = "Firing")
-		int GetAmmoRemaining() const;
+		int32 GetAmmoRemaining() const;
 
 
 	UPROPERTY(BlueprintReadOnly, Category = "States")
@@ -79,5 +79,5 @@ public:
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-		int Ammo = 30;
+		int32 Ammo = 30;
 };
