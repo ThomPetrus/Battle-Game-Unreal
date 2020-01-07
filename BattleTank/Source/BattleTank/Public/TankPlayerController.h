@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Tank.h"
 #include "GameFramework/PlayerController.h"
 
 
@@ -29,6 +30,13 @@ protected:
 		void FoundAimingComponent(UTankAimingComponent* AimingComponentReference);
 
 private:
+
+	virtual void SetPawn(APawn* InPawn) override;
+
+	UFUNCTION()
+		void OnPossessedTankDeath();
+
+
 	UPROPERTY(EditDefaultsOnly)
 		float ReticleXLocation = 0.5;
 
