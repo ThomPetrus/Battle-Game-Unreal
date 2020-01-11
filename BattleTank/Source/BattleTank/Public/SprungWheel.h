@@ -26,12 +26,21 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
+	void ApplyForce();
+
+	float TotalForceMagnitude = 0;
+
 	void SetupConstraints();
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	void AddDrivingForce(float ForceMagnitude);
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 		USphereComponent* Wheel = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 		USphereComponent* Axle = nullptr;
 	
 	UPROPERTY(VisibleAnywhere, Category = "Components")
